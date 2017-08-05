@@ -1,15 +1,15 @@
 const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js';
 
-function getDataFromApi(callback) {
+function getDataFromApi(searchTerm, callback) {
     const request = {
       url: ETSY_SEARCH_URL,
       api_key: "zoug3fzmdrpsjesf12llft3h",
       data: {
         tags: ["stationery"],
-        params: keywords["stationery"],
+        keywords: searchTerm,
+        category: ["stationery"];
         limit: 15,
         includes: "images",
-        state: "active",
         listingImage: "75x75" //thumbnail size
       },
       dataType: "jsonp",
@@ -19,35 +19,35 @@ function getDataFromApi(callback) {
     $.ajax(request);
 }
 
-//OR
-// function getDataFromApi(callback) {
-//   return $ajax({
-//     url: ETSY_SEARCH_URL,
-//     api_key: "zoug3fzmdrpsjesf12llft3h",
-//    data: {
-      //   tags: ["stationery"],
-      //   params: keywords["stationery"],
-      //   limit: 15,
-      //   includes: "images",
-      //   state: "active",
-      //   listingImage: "75x75" //thumbnail size
-      // },
-//     dataType: "jsonp",
-//     method: "GET",
-//     success: callback
-//   });
-// }
+function onSubmit() {
+  $('.search-form').submit(event => {
+    // console.log('submitted');
+    event.preventDefault();
+    const searchTermInput = $('.main-input');
+    const dataRequest = searchTermInput.val(); 
+    searchTermInput.val("");//clear out input
+    console.log(dataRequest);
+    getDataFromApi(dataRequest, showApiData);
+  });
+}
 
-function showApiData(data) {
-  const results = data.items.map(index) //returns nodes of all indexes and create a new array with the results
-  //render results inside a div
-  return results
+$(onSubmit);
+
+function renderResult(result) {
+  console.log(result);
+  return `
+    <div>
+     <a class="js-results" href="${result.}" target="_blank"><img src="${result.listingImage}"></a>
+    </div>
+  `;
 }
 
 
-
-
-
+function showApiData(data) {
+  const results = data.items.map((results, index) => renderResult(results));
+  $('.results').html(results);
+  return results
+}
 
 
 
