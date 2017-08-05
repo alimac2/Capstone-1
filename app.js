@@ -1,16 +1,16 @@
-const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js';
+const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js?';
 
 function getDataFromApi(searchTerm, callback) {
     const request = {
-      url: ETSY_SEARCH_URL,
-      api_key: "zoug3fzmdrpsjesf12llft3h",
+      url: ETSY_SEARCH_URL, 
       data: {
-        tags: ["stationery"],
+        // tags: ["stationery"],
         keywords: searchTerm,
-        category: ["stationery"];
+        category: "Stationery",
         limit: 15,
-        includes: "images",
-        listingImage: "75x75" //thumbnail size
+        includes: "Images",
+        // listingImage: "75x75" //thumbnail size unsure about syntax
+        api_key: "zoug3fzmdrpsjesf12llft3h"
       },
       dataType: "jsonp",
       type: "GET", 
@@ -25,31 +25,30 @@ function onSubmit() {
     event.preventDefault();
     const searchTermInput = $('.main-input');
     const dataRequest = searchTermInput.val(); 
-    searchTermInput.val("");//clear out input
+    //clear out input
+    searchTermInput.val("");
     console.log(dataRequest);
     getDataFromApi(dataRequest, showApiData);
   });
 }
 
-$(onSubmit);
-
 function renderResult(result) {
   console.log(result);
   return `
     <div>
-     <a class="js-results" href="${result.}" target="_blank"><img src="${result.listingImage}"></a>
+     <a class="js-results" href="${result.url}" target="_blank"><img src="${result.Images[0]}"></a>
     </div>
   `;
 }
 
 
 function showApiData(data) {
-  const results = data.items.map((results, index) => renderResult(results));
-  $('.results').html(results);
-  return results
+  const etsyResults = data.results.forEach((results) => renderResult(etsyResults));
+  $('.results').html(etsyResults);
+  return etsyResults;
 }
 
-
+$(onSubmit);
 
 // const GOOGLEMAPS_SEARCH_URL = 'endpoint';
 
