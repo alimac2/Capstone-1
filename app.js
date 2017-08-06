@@ -34,7 +34,7 @@ function onSubmit() {
 }
 
 function renderResult(result) {
-  console.log(result);
+  // console.log(result);
   return `
     <div>
      <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_75x75}"></a>
@@ -44,9 +44,10 @@ function renderResult(result) {
 
 
 function showApiData(data) {
-  console.log(data);
-  const etsyResults = data.results.forEach((results) => renderResult(results));
+  // console.log(data);
+  const etsyResults = data.results.map(renderResult);
   $('.js-stationery-results').html(etsyResults);
+  console.log(etsyResults);
   return etsyResults;
 }
 
