@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: 'PT Mono', monospace;
 }
 
 html, body {
@@ -14,9 +15,15 @@ html, body {
 h1 {
 	font-size: 72px;
 	font-family: 'PT Mono', monospace;
+	margin-bottom: 0;
+	padding: 0;
 }
 
-h1, section {
+h2 {
+	margin-top: 0;
+}
+
+header, section, p {
 	margin-left: 0;
 	margin-right: 0;
 	margin-top: 15px;
@@ -24,11 +31,12 @@ h1, section {
 	text-align: center;
 	color: white;
 	position: relative;
-	top: 200px;
+	top: 135px;
 }
 
 input {
-
+	padding: 10px;
+	width: 450px;
 }
 
 button {

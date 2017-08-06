@@ -1,15 +1,16 @@
-const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js?';
+const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js';
 
 function getDataFromApi(searchTerm, callback) {
     const request = {
       url: ETSY_SEARCH_URL, 
       data: {
-        // tags: ["stationery"],
         keywords: searchTerm,
+        q: "stationery",
         category: "Stationery",
+        tags: "stationery",
+        description: "greeting cards",
         limit: 15,
         includes: "Images",
-        // listingImage: "75x75" //thumbnail size unsure about syntax
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
       dataType: "jsonp",
@@ -21,7 +22,7 @@ function getDataFromApi(searchTerm, callback) {
 
 function onSubmit() {
   $('.search-form').submit(event => {
-    // console.log('submitted');
+    console.log('submitted');
     event.preventDefault();
     const searchTermInput = $('.main-input');
     const dataRequest = searchTermInput.val(); 
@@ -36,15 +37,16 @@ function renderResult(result) {
   console.log(result);
   return `
     <div>
-     <a class="js-results" href="${result.url}" target="_blank"><img src="${result.Images[0]}"></a>
+     <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_75x75}"></a>
     </div>
   `;
 }
 
 
 function showApiData(data) {
-  const etsyResults = data.results.forEach((results) => renderResult(etsyResults));
-  $('.results').html(etsyResults);
+  console.log(data);
+  const etsyResults = data.results.forEach((results) => renderResult(results));
+  $('.js-stationery-results').html(etsyResults);
   return etsyResults;
 }
 
