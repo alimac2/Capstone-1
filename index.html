@@ -7,20 +7,23 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-	<header>
+	<div class="back-btn-div hidden">
+	<button class="back-btn">Back to Search</button>
+	</div>
+	<main>
+	<header> 
 		<h1>Paper Trail</h1>
 		<h4>Fall in love with snail mail.</h4>
 	</header>
-	<main>
 		<section class="etsy-search">
 			<form class="search-form">
 				<input type="text" class="main-input" placeholder="Search by category (e.g., friendship, love, etc.)"><br>
 				<button type="submit" class="search-paper btn">Search Paper Products</button>
 			</form>
 
-			<p>Find premium stationery for all occasions.ss</p>
+			<p>Find premium stationery for all occasions.</p>
 		</section>
-		<div class="js-stationery-results"></div>
+		
 
 <!-- 		<section class="google-maps-search">
 			<form>
@@ -29,7 +32,14 @@
 			</form>
 		</section> -->
 	</main>
+	<section class="js-stationery-results"></section>
 
+	<section class="loading hidden">
+		<p class="loading-text">Loading...</p>
+	</section>
+
+
+	
 	<script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

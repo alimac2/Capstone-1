@@ -8,8 +8,8 @@ function getDataFromApi(searchTerm, callback) {
         q: "stationery",
         category: "Stationery",
         tags: "stationery",
-        description: "greeting cards",
-        limit: 15,
+        /*description: "greeting cards",*/
+        limit: 30,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
@@ -22,12 +22,13 @@ function getDataFromApi(searchTerm, callback) {
 
 function onSubmit() {
   $('.search-form').submit(event => {
-    console.log('submitted');
+    // console.log('submitted');
     event.preventDefault();
     const searchTermInput = $('.main-input');
     const dataRequest = searchTermInput.val(); 
     //clear out input
     searchTermInput.val("");
+    $('.loading').removeClass('hidden');
     console.log(dataRequest);
     getDataFromApi(dataRequest, showApiData);
   });
@@ -36,18 +37,27 @@ function onSubmit() {
 function renderResult(result) {
   // console.log(result);
   return `
-    <div>
-     <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_75x75}"></a>
+    <div class="js-displayed-results-box">
+     <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_170x135}"></a>
     </div>
   `;
 }
 
+$('.back-btn-div').on("click", function(event){
+  $('.js-stationery-results').addClass('hidden');
+  $('.back-btn-div').addClass('hidden');
+  $('main').removeClass('hidden');
+});
 
 function showApiData(data) {
   // console.log(data);
   const etsyResults = data.results.map(renderResult);
   $('.js-stationery-results').html(etsyResults);
-  console.log(etsyResults);
+  $('main').addClass('hidden');
+  $('.back-btn-div').removeClass('hidden');
+  $('.js-stationery-results').removeClass('hidden');
+  $('.loading').addClass('hidden');
+  // console.log(etsyResults);
   return etsyResults;
 }
 

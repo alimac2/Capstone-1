@@ -12,6 +12,10 @@ html, body {
 	margin-right: 0;
 }
 
+main {
+
+}
+
 h1 {
 	font-size: 72px;
 	font-family: 'PT Mono', monospace;
@@ -24,8 +28,7 @@ h2 {
 }
 
 header, section, p {
-	margin-left: 0;
-	margin-right: 0;
+	margin: 0 auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	text-align: center;
@@ -44,7 +47,21 @@ button {
 	color: white;
 	cursor: url('http://www.funpaperairplanes.com/img/fpa-logo.png'), pointer;
 	border-radius: 5px;
-	margin: 10px;
+	margin: 50px;
 	padding: 8px;
+	margin: 0 auto;
 }
 
+.js-displayed-results-box {
+	display: inline-block;
+}
+
+.js-stationery-results {
+	max-width: 1100px;
+	padding: 30px;
+	margin: 0 auto;
+}
+
+.hidden {
+	display: none;
+}
