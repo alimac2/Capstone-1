@@ -8,8 +8,7 @@ html, body {
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
-	margin-left: 0;
-	margin-right: 0;
+	margin: 0 auto;
 }
 
 main {
@@ -47,9 +46,12 @@ button {
 	color: white;
 	cursor: url('http://www.funpaperairplanes.com/img/fpa-logo.png'), pointer;
 	border-radius: 5px;
-	margin: 50px;
 	padding: 8px;
-	margin: 0 auto;
+	margin: 15px;
+}
+
+.back-btn-div {
+	text-align: center;
 }
 
 .js-displayed-results-box {

@@ -5,10 +5,8 @@ function getDataFromApi(searchTerm, callback) {
       url: ETSY_SEARCH_URL, 
       data: {
         keywords: searchTerm,
-        q: "stationery",
         category: "Stationery",
         tags: "stationery",
-        /*description: "greeting cards",*/
         limit: 30,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
