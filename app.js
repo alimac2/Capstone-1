@@ -7,7 +7,7 @@ function getDataFromApi(searchTerm, callback) {
         keywords: searchTerm,
         category: "Stationery",
         tags: "stationery",
-        limit: 30,
+        limit: 50,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
@@ -33,7 +33,7 @@ function onSubmit() {
 }
 
 function renderResult(result) {
-  // console.log(result);
+  console.log(result);
   return `
     <div class="js-displayed-results-box">
      <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_170x135}"></a>
