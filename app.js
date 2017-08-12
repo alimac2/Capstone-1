@@ -57,7 +57,7 @@ function initMap() {
       scaledSize: new google.maps.Size(25, 25)
     };
 
-// Create a marker for each place.
+  /* Creates a marker for each place. */
     markers.push(new google.maps.Marker({
       map: map,
       icon: icon,
@@ -66,14 +66,13 @@ function initMap() {
     }));
 
     if (place.geometry.viewport) {
-      // Only geocodes have viewport.
      bounds.union(place.geometry.viewport);
     } else {
       bounds.extend(place.geometry.location);
     }
   });
     map.fitBounds(bounds);
-
+}
 
 var infowindow = new google.maps.InfoWindow();
 // var marker = new google.maps.Marker({
@@ -86,25 +85,25 @@ var infowindow = new google.maps.InfoWindow();
 //   });
 // }
 
-function onSubmit() {
+function onMapSubmit() {
   $(".map-search-form").submit(event => {
     event.preventDefault();
     const mapInput = $(".map-input");
-    const dataRequest = mapInput.val(); 
-    //clear out input
+    const googleDataRequest = mapInput.val(); 
+    /* clear out input */
     mapInput.val("");
-    console.log(dataRequest);
-    getDataFromGoogleApi(dataRequest, showGoogleApiData);
+    console.log(googleDataRequest);
+    getDataFromGoogleApi(googleDataRequest, showGoogleApiData);
   });
 }
 
-function showGoogleApiData(data) {
-  console.log(data);
-  const googleResults = ;
+// function showGoogleApiData(data) {
+//   console.log(data);
+//   const googleResults = ;
   
-  // console.log(etsyResults);
-  return googleResults;
-}
+//   // console.log(etsyResults);
+//   return googleResults;
+// }
 
 
 initMap();
@@ -140,15 +139,14 @@ function getDataFromEtsyApi(searchTerm, callback) {
 
 function onStationerySubmit() {
   $(".search-form").submit(event => {
-    // console.log('submitted');
     event.preventDefault();
     const searchTermInput = $(".main-input");
-    const dataRequest = searchTermInput.val(); 
-    //clear out input
+    const etsyDataRequest = searchTermInput.val(); 
+    /* clear out input */
     searchTermInput.val("");
     $(".loading").removeClass("hidden");
-    console.log(dataRequest);
-    getDataFromEtsyApi(dataRequest, showEtsyApiData);
+    console.log(etsyDataRequest);
+    getDataFromEtsyApi(etsyDataRequest, showEtsyApiData);
   });
 }
 
