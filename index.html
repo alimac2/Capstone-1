@@ -10,6 +10,7 @@
 	<div class="back-btn-div hidden">
 	<button class="back-btn">Back to Search</button>
 	</div>
+	
 	<main>
 	<header> 
 		<h1>Paper Trail</h1>
@@ -23,21 +24,18 @@
 
 			<p>Find premium stationery and greeting cards for all occasions.</p>
 		</section>
-		
-
-<!-- 		<section class="google-maps-search">
-			<form>
-				<input type="text" class="google-input"><br>
-				<button type="submit" class="google btn">Search</button>
-			</form>
-		</section> -->
 	</main>
+
 	<section class="js-stationery-results"></section>
 
 	<section class="loading hidden">
 		<p class="loading-text">Loading...</p>
 	</section>
 
+	<section class="google-maps-box">
+		<button type="submit" class="google-maps btn">Search Nearby Stores</button>
+		<div class="google-map-display"></div>
+	</section>
 
 	
 	<script
@@ -45,8 +43,7 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
     </script>
-<!--     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU'&callback=initMap"></script>
- -->
+ 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places&callback=initMap" async defer></script>
  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>

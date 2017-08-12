@@ -1,3 +1,30 @@
+
+/*GOOGLE MAPS FUNCTIONALITY*/
+const map;
+const myLatLngn = {lat: 37.09024, lng: -95.712891}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLngn,
+    zoom: 5
+    });
+
+  const marker = new google.maps.Marker({
+    position: myLatLngn,
+    map: map,
+    title: 'This is where you are'
+    });
+}
+
+
+
+
+
+
+
+
+
+/*ETSY FUNCTIONALITY*/
 const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js';
 
 function getDataFromApi(searchTerm, callback) {
@@ -60,6 +87,11 @@ function showApiData(data) {
 }
 
 $(onSubmit);
+
+
+
+
+//EXAMPLE CODEN FOR GOOGLE MAPS
 
 // const GOOGLEMAPS_SEARCH_URL = 'endpoint';
 
