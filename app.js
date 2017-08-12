@@ -1,9 +1,9 @@
 
 /*GOOGLE MAPS FUNCTIONALITY*/
-const GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
+var GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
 
 function getDataFromGoogleApi(searchTerm, callback) {
-  const request = {
+  var request = {
     url: GOOGLEMAPS_SEARCH_URL,
     dataType: "jsonp",
     type: "GET", 
@@ -12,45 +12,104 @@ function getDataFromGoogleApi(searchTerm, callback) {
   $.ajax(request);
 }
 
-const map;
-const myLatLngn = {lat: 37.09024, lng: -95.712891}
+var map;
+var myLatLngn = {lat: 37.09024, lng: -95.712891}
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("map-display"), {
     center: myLatLngn,
-    zoom: 5
+    zoom: 5,
+    mapTypeId: 'roadmap'
     });
 
-  var input = document.getElementById('search-box');
+  var input = document.getElementById("search-box");
   var searchBox = new google.maps.places.SearchBox(input);
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  map.addListener('bounds_changed', function() {
+  map.addListener("bounds_changed", function() {
           searchBox.setBounds(map.getBounds());
         });
+
+  var markers = [];
+  searchBox.addListener("places_changed", function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
+    };
+  });
+    
+  /* Clears out old markers */  
+  markers.forEach(function(marker) {
+  marker.setMap(null);
+  });
+  markers = [];
+
+  var bounds = new google.maps.LatLngBounds();
+  places.forEach(function(place) {
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+    var icon = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
+
+// Create a marker for each place.
+    markers.push(new google.maps.Marker({
+      map: map,
+      icon: icon,
+      title: place.name,
+      position: place.geometry.location
+    }));
+
+    if (place.geometry.viewport) {
+      // Only geocodes have viewport.
+     bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+  });
+    map.fitBounds(bounds);
+
+
+var infowindow = new google.maps.InfoWindow();
+// var marker = new google.maps.Marker({
+//     // position: 
+//     map: map,
+//     // title: 
+//   });
+//   marker.addListener('click', function() {
+//     infowindow.open(map, marker);
+//   });
+// }
+
+function onSubmit() {
+  $(".map-search-form").submit(event => {
+    event.preventDefault();
+    const mapInput = $(".map-input");
+    const dataRequest = mapInput.val(); 
+    //clear out input
+    mapInput.val("");
+    console.log(dataRequest);
+    getDataFromGoogleApi(dataRequest, showGoogleApiData);
+  });
+}
+
+function showGoogleApiData(data) {
+  console.log(data);
+  const googleResults = ;
+  
+  // console.log(etsyResults);
+  return googleResults;
+}
 
 
 initMap();
 
 
-
-const infowindow = new google.maps.InfoWindow();
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('bounds_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
 
 
 
@@ -61,7 +120,7 @@ const infowindow = new google.maps.InfoWindow();
 /*ETSY FUNCTIONALITY*/
 const ETSY_SEARCH_URL = "https://openapi.etsy.com/v2/listings/active.js";
 
-function getDataFromApi(searchTerm, callback) {
+function getDataFromEtsyApi(searchTerm, callback) {
     const request = {
       url: ETSY_SEARCH_URL, 
       data: {
@@ -79,21 +138,21 @@ function getDataFromApi(searchTerm, callback) {
     $.ajax(request);
 }
 
-function onSubmit() {
-  $('.search-form').submit(event => {
+function onStationerySubmit() {
+  $(".search-form").submit(event => {
     // console.log('submitted');
     event.preventDefault();
-    const searchTermInput = $('.main-input');
+    const searchTermInput = $(".main-input");
     const dataRequest = searchTermInput.val(); 
     //clear out input
     searchTermInput.val("");
-    $('.loading').removeClass('hidden');
+    $(".loading").removeClass("hidden");
     console.log(dataRequest);
-    getDataFromApi(dataRequest, showApiData);
+    getDataFromEtsyApi(dataRequest, showEtsyApiData);
   });
 }
 
-function renderResult(result) {
+function renderEtsyResult(result) {
   console.log(result);
   return `
     <div class="js-displayed-results-box">
@@ -102,41 +161,25 @@ function renderResult(result) {
   `;
 }
 
-$('.back-btn-div').on("click", function(event){
-  $('.js-stationery-results').addClass('hidden');
-  $('.back-btn-div').addClass('hidden');
-  $('main').removeClass('hidden');
+$(".back-btn-div").on("click", function(event){
+  $(".js-stationery-results").addClass("hidden");
+  $(".back-btn-div").addClass("hidden");
+  $("main").removeClass("hidden");
 });
 
-function showApiData(data) {
-  // console.log(data);
-  const etsyResults = data.results.map(renderResult);
-  $('.js-stationery-results').html(etsyResults);
-  $('main').addClass('hidden');
-  $('.back-btn-div').removeClass('hidden');
-  $('.js-stationery-results').removeClass('hidden');
-  $('.loading').addClass('hidden');
+function showEtsyApiData(data) {
+  console.log(data);
+  const etsyResults = data.results.map(renderEtsyResult);
+  $(".js-stationery-results").html(etsyResults);
+  $("main").addClass("hidden");
+  $(".back-btn-div").removeClass("hidden");
+  $(".js-stationery-results").removeClass("hidden");
+  $(".loading").addClass('hidden');
   // console.log(etsyResults);
   return etsyResults;
 }
 
-$(onSubmit);
-
-
-
-
-//EXAMPLE CODEN FOR GOOGLE MAPS
-
-// const GOOGLEMAPS_SEARCH_URL = 'endpoint';
-
-// function getDataFromApi(searchTerm, callback) {
-//   const request = {
-//     key: 'AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU',
-//     q: searchTerm
-
-//   };
-//   $.getJSON(GOOGLEMAPS_SEARCH_URL, request, callback);
-// }
+$(onStationerySubmit);
 
 
 
