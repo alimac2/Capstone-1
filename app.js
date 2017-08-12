@@ -1,22 +1,56 @@
 
 /*GOOGLE MAPS FUNCTIONALITY*/
+const GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
+
+function getDataFromGoogleApi(searchTerm, callback) {
+  const request = {
+    url: GOOGLEMAPS_SEARCH_URL,
+    dataType: "jsonp",
+    type: "GET", 
+    success: callback
+  };
+  $.ajax(request);
+}
+
 const map;
 const myLatLngn = {lat: 37.09024, lng: -95.712891}
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById("map"), {
     center: myLatLngn,
     zoom: 5
     });
 
-  const marker = new google.maps.Marker({
-    position: myLatLngn,
-    map: map,
-    title: 'This is where you are'
-    });
-}
+  var input = document.getElementById('search-box');
+  var searchBox = new google.maps.places.SearchBox(input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
 
 
+initMap();
+
+
+
+const infowindow = new google.maps.InfoWindow();
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('bounds_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
 
 
 
@@ -25,7 +59,7 @@ function initMap() {
 
 
 /*ETSY FUNCTIONALITY*/
-const ETSY_SEARCH_URL = 'https://openapi.etsy.com/v2/listings/active.js';
+const ETSY_SEARCH_URL = "https://openapi.etsy.com/v2/listings/active.js";
 
 function getDataFromApi(searchTerm, callback) {
     const request = {

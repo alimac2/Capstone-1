@@ -10,7 +10,7 @@
 	<div class="back-btn-div hidden">
 	<button class="back-btn">Back to Search</button>
 	</div>
-	
+
 	<main>
 	<header> 
 		<h1>Paper Trail</h1>
@@ -33,7 +33,12 @@
 	</section>
 
 	<section class="google-maps-box">
+		<form class="google-maps-search">
+		<label for="search-box"></label>
+		<input id="search-box" type="text" name="search-box" placeholder="Search Places">
 		<button type="submit" class="google-maps btn">Search Nearby Stores</button>
+		</form>
+
 		<div class="google-map-display"></div>
 	</section>
 
@@ -43,7 +48,6 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
     </script>
- 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places&callback=initMap" async defer></script>
  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
