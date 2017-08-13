@@ -12,7 +12,7 @@ function initAutocomplete() {
   var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  
+
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
@@ -74,7 +74,7 @@ function getDataFromEtsyApi(searchTerm, callback) {
         keywords: searchTerm,
         category: "Stationery",
         tags: "stationery",
-        limit: 50,
+        limit: 30,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
@@ -111,6 +111,7 @@ $(".back-btn-div").on("click", function(event){
   $(".js-stationery-results").addClass("hidden");
   $(".back-btn-div").addClass("hidden");
   $("main").removeClass("hidden");
+  $(".map-search").addClass("hidden");
 });
 
 function showEtsyApiData(data) {
@@ -120,6 +121,7 @@ function showEtsyApiData(data) {
   $("main").addClass("hidden");
   $(".back-btn-div").removeClass("hidden");
   $(".js-stationery-results").removeClass("hidden");
+  $(".map-search").removeClass("hidden");
   $(".loading").addClass('hidden');
   // console.log(etsyResults);
   return etsyResults;
