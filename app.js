@@ -11,7 +11,8 @@ function initAutocomplete() {
 
   var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
-
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
@@ -21,8 +22,7 @@ function initAutocomplete() {
     var places = searchBox.getPlaces();
     if (places.length == 0) {
       return;
-    };
-  });
+    }
     
   /* Clears out old markers */  
   markers.forEach(function(marker) {
@@ -44,7 +44,7 @@ function initAutocomplete() {
       scaledSize: new google.maps.Size(25, 25)
     };
 
-   Creates a marker for each place. 
+   //Creates a marker for each place. 
     markers.push(new google.maps.Marker({
       map: map,
       icon: icon,
@@ -59,28 +59,8 @@ function initAutocomplete() {
     }
   });
     map.fitBounds(bounds);
-
-
-function onMapSubmit() {
-  $(".map-search-form").submit(event => {
-    event.preventDefault();
-    const mapInput = $(".map-input");
-    const googleDataRequest = mapInput.val(); 
-    /* clear out input */
-    mapInput.val("");
-    console.log(googleDataRequest);
-    getDataFromGoogleApi(googleDataRequest, showGoogleApiData);
   });
 }
-
-
-
-
-
-
-
-
-
 
 
 

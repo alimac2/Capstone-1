@@ -78,6 +78,11 @@ button {
 	display: none;
 }
 
+.map-search {
+	height: 500px;
+	width: 400px;
+}
+
 #map-display {
 	height: 100%;
 	max-width: 400px;
