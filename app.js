@@ -1,33 +1,35 @@
+// var GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
+
+// function getDataFromGoogleApi(searchTerm, callback) {
+//   var request = {
+//     url: GOOGLEMAPS_SEARCH_URL,
+//     dataType: "jsonp",
+//     type: "GET", 
+//     success: callback
+//   };
+//   $.ajax(request);
+// }
+
+
+
 
 /*GOOGLE MAPS FUNCTIONALITY*/
-var GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
-
-function getDataFromGoogleApi(searchTerm, callback) {
-  var request = {
-    url: GOOGLEMAPS_SEARCH_URL,
-    dataType: "jsonp",
-    type: "GET", 
-    success: callback
-  };
-  $.ajax(request);
-}
-
 var map;
 var myLatLngn = {lat: 37.09024, lng: -95.712891}
 
-function initMap() {
+function initAutocomplete() {
   map = new google.maps.Map(document.getElementById("map-display"), {
     center: myLatLngn,
     zoom: 5,
-    mapTypeId: 'roadmap'
+    mapTypeId: "roadmap"
     });
 
-  var input = document.getElementById("search-box");
+  var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
 
   map.addListener("bounds_changed", function() {
-          searchBox.setBounds(map.getBounds());
-        });
+    searchBox.setBounds(map.getBounds());
+  });
 
   var markers = [];
   searchBox.addListener("places_changed", function() {
@@ -75,15 +77,15 @@ function initMap() {
 }
 
 var infowindow = new google.maps.InfoWindow();
-// var marker = new google.maps.Marker({
-//     // position: 
-//     map: map,
-//     // title: 
-//   });
-//   marker.addListener('click', function() {
-//     infowindow.open(map, marker);
-//   });
-// }
+var marker = new google.maps.Marker({
+    // position: 
+    map: map,
+    // title: 
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
 
 function onMapSubmit() {
   $(".map-search-form").submit(event => {
@@ -106,7 +108,7 @@ function onMapSubmit() {
 // }
 
 
-initMap();
+
 
 
 

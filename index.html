@@ -36,19 +36,20 @@
 	<section class="map-search">
 		<form class="map-search-form">
 			<label for="search-box"></label>
-			<input class="map-input" type="text" name="search-box" placeholder="Search by city or zipcode"><br>
+			<input type="text" id="map-input" name="search-box" placeholder="Search by city or zipcode"><br>
 			<button type="submit" class="google-maps btn">Search Nearby Stores</button>
 		</form>
 
 		<div id="map-display"></div>
 	</section>
 
-	
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places&callback=initAutocomplete"></script>
 	<script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous">
     </script>
- <script type="text/javascript" src="app.js"></script>
+ 	<script type="text/javascript" src="app.js"></script>
+
 </body>
 </html>
