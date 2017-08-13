@@ -25,11 +25,11 @@ h1 {
 	padding: 0;
 }
 
-h4 {
+.subheader {
 	margin-top: 0;
 }
 
-header, section, p {
+header, section, p, h2 {
 	margin: 0 auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -80,10 +80,10 @@ button {
 
 .map-search {
 	height: 400px;
-	width: 800px;
+	width: 500px;
 }
 
 #map-display {
 	height: 100%;
-	max-width: 800px;
+	max-width: 500px;
 }

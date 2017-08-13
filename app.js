@@ -111,6 +111,7 @@ $(".back-btn-div").on("click", function(event){
   $(".js-stationery-results").addClass("hidden");
   $(".back-btn-div").addClass("hidden");
   $("main").removeClass("hidden");
+  $(".map-header").addClass("hidden")
   $(".map-search").addClass("hidden");
 });
 
@@ -121,6 +122,7 @@ function showEtsyApiData(data) {
   $("main").addClass("hidden");
   $(".back-btn-div").removeClass("hidden");
   $(".js-stationery-results").removeClass("hidden");
+  $(".map-header").removeClass("hidden")
   $(".map-search").removeClass("hidden");
   $(".loading").addClass('hidden');
   // console.log(etsyResults);
