@@ -1,18 +1,3 @@
-// var GOOGLEMAPS_SEARCH_URL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU&libraries=places";
-
-// function getDataFromGoogleApi(searchTerm, callback) {
-//   var request = {
-//     url: GOOGLEMAPS_SEARCH_URL,
-//     dataType: "jsonp",
-//     type: "GET", 
-//     success: callback
-//   };
-//   $.ajax(request);
-// }
-
-
-
-
 /*GOOGLE MAPS FUNCTIONALITY*/
 var map;
 var myLatLngn = {lat: 37.09024, lng: -95.712891}
@@ -59,7 +44,7 @@ function initAutocomplete() {
       scaledSize: new google.maps.Size(25, 25)
     };
 
-  /* Creates a marker for each place. */
+   Creates a marker for each place. 
     markers.push(new google.maps.Marker({
       map: map,
       icon: icon,
@@ -74,18 +59,7 @@ function initAutocomplete() {
     }
   });
     map.fitBounds(bounds);
-}
 
-var infowindow = new google.maps.InfoWindow();
-var marker = new google.maps.Marker({
-    // position: 
-    map: map,
-    // title: 
-  });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-}
 
 function onMapSubmit() {
   $(".map-search-form").submit(event => {
@@ -98,14 +72,6 @@ function onMapSubmit() {
     getDataFromGoogleApi(googleDataRequest, showGoogleApiData);
   });
 }
-
-// function showGoogleApiData(data) {
-//   console.log(data);
-//   const googleResults = ;
-  
-//   // console.log(etsyResults);
-//   return googleResults;
-// }
 
 
 
