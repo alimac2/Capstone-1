@@ -9,40 +9,64 @@
 	<link rel="stylesheet" type="text/css" href="grid.css">
 </head>
 <body>
-	<div class="back-btn-div hidden">
-	<button class="back-btn">Back to Search</button>
-	</div>
+	<main role="main">
+		<header role="title-page"> 
+			<div class="row">
+				<div class="col-12">
+					<h1>Paper Trail</h1>
+					<h4 class="subheader">Fall in love with snail mail.</h4>
+				</div>
+			</div>
+		</header>
 
-	<main>
-	<header> 
-		<h1>Paper Trail</h1>
-		<h4 class="subheader">Fall in love with snail mail.</h4>
-	</header>
-		<section class="etsy-search">
-			<form class="search-form">
-				<label class="stationery-search"></label>
-				<input type="text" class="main-input" placeholder="Search by category (e.g., friendship, love, etc.)"><br>
-				<button type="submit" class="search-paper btn">Search Paper Products</button>
-			</form>
+		<!-- Stationery Search Page -->
+		<section class="etsy-search" role="stationer-search">
+			<div class="row">
+				<div class="col-12">
+					<form class="search-form">
+						<label class="stationery-search"></label>
+						<input type="text" class="main-input" placeholder="Search by category (e.g., friendship, love, etc.)"><br>
+						<button type="submit" class="search-paper btn">Search Paper Products</button>
+					</form>
 
-			<p>Find premium stationery and greeting cards for all occasions.</p>
+					<!-- Sentence explaining app -->
+					<p>Find premium stationery and greeting cards for all occasions.</p>
+				</div>
+			</div>
 		</section>
 	</main>
 
-	<section class="js-stationery-results"></section>
-
-	<section class="loading hidden">
-		<p class="loading-text">Loading...</p>
+	<!-- Back button to return to main paig-->
+	<section role="back-button">
+		<div class="row">
+			<div class="col-12">
+				<div class="back-btn-div hidden">
+					<button class="back-btn">Back to Search</button>
+				</div>
+			</div>
+		</div>
 	</section>
 
-	<h2 class="map-header hidden">Can't find what you're looking for? <br> Check out a paper products shop near you:</h2>
-	<section class="map-search  hidden">
+	<!-- Stationery results based on search term -->
+	<section class="js-stationery-results" role="stationery-results"></section>
+
+	<!-- Message when page loads results -->
+	<section class="loading hidden" role="page-loading">
+		<div class="row">
+			<div class="col-12">
+				<p class="loading-text">Loading...</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Google Maps search for stores near user -->
+	<section class="map-search  hidden" role="search-stores">
+		<h2 class="map-header hidden">Can't find what you're looking for? <br> Check out a paper products shop near you:</h2>
 		<!-- <form class="map-search-form"> -->
 			<!-- <label for="search-box"></label> -->
-			<input type="text" id="map-input" class="controls" name="search-box" placeholder="Search by city or state and add stationery"><br>
+		<input type="text" id="map-input" class="controls" name="search-box" placeholder="Search by city or state and add stationery"><br>
 			<!-- <button type="submit" class="google-maps btn">Search Nearby Stores</button> -->
-<!-- 		</form>
- -->
+		<!-- </form> -->
 		<div id="map-display"></div>
 	</section>
 	
