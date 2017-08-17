@@ -1,13 +1,34 @@
 /*GOOGLE MAPS FUNCTIONALITY*/
 var map;
-var myLatLngn = {lat: 37.09024, lng: -95.712891}
+var myLatLngn = {lat: 37.09024, lng: -95.712891};
+var infoWindow;
 
 function initAutocomplete() {
   map = new google.maps.Map(document.getElementById("map-display"), {
     center: myLatLngn,
-    zoom: 5,
+    zoom: 7,
     mapTypeId: "roadmap"
     });
+  infoWindow = new google.maps.InfoWindow;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('You are here.');
+      infoWindow.open(map);
+      map.setCenter(pos);
+    }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+  } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
 
   var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
@@ -23,7 +44,7 @@ function initAutocomplete() {
     if (places.length == 0) {
       return;
     }
-    
+
   /* Clears out old markers */  
   markers.forEach(function(marker) {
   marker.setMap(null);
@@ -62,6 +83,15 @@ function initAutocomplete() {
   });
 }
 
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+ infoWindow.open(map);
+}
+
+
 
 
 /*ETSY FUNCTIONALITY*/
@@ -74,7 +104,7 @@ function getDataFromEtsyApi(searchTerm, callback) {
         keywords: searchTerm,
         category: "Stationery",
         tags: "stationery",
-        limit: 30,
+        limit: 10,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
@@ -102,7 +132,7 @@ function renderEtsyResult(result) {
   console.log(result);
   return `
     <div class="js-displayed-results-box">
-     <a class="js-displayed-results" href="${result.url}" target="_blank"><img src="${result.Images[0].url_170x135}"></a>
+     <a class="js-displayed-results" href="${result.url}" target="_blank"><img class="results-image" src="${result.Images[0].url_170x135}"></a>
     </div>
   `;
 }
