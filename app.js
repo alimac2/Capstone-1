@@ -9,6 +9,7 @@ function initAutocomplete() {
     zoom: 7,
     mapTypeId: "roadmap"
     });
+
   infoWindow = new google.maps.InfoWindow;
 
   if (navigator.geolocation) {
@@ -19,7 +20,7 @@ function initAutocomplete() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('You are here.');
+      infoWindow.setContent('You are here');
       infoWindow.open(map);
       map.setCenter(pos);
     }, function() {
@@ -104,7 +105,7 @@ function getDataFromEtsyApi(searchTerm, callback) {
         keywords: searchTerm,
         category: "Stationery",
         tags: "stationery",
-        limit: 10,
+        limit: 12,
         includes: "Images",
         api_key: "zoug3fzmdrpsjesf12llft3h"
       },
@@ -129,7 +130,7 @@ function onStationerySubmit() {
 }
 
 function renderEtsyResult(result) {
-  console.log(result);
+  // console.log(result);
   return `
     <div class="js-displayed-results-box">
      <a class="js-displayed-results" href="${result.url}" target="_blank"><img class="results-image" src="${result.Images[0].url_170x135}"></a>
@@ -146,7 +147,7 @@ $(".back-btn-div").on("click", function(event){
 });
 
 function showEtsyApiData(data) {
-  console.log(data);
+  // console.log(data);
   const etsyResults = data.results.map(renderEtsyResult);
   $(".js-stationery-results").html(etsyResults);
   $("main").addClass("hidden");
