@@ -4,18 +4,23 @@
 }
 
 html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+body {
 	background-image: url(paul-jarvis-217.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
-	margin: 0;
-	padding: 0;
-	height: 100%;
 }
 
 main {
 	position: relative;
 	top: 135px;
+	padding: 0 10px;
 }
 
 h1 {
@@ -25,10 +30,8 @@ h1 {
 	padding: 0;
 }
 
-
 header, section, p, h2 {
 	margin: 0 auto;
-	margin-top: 15px;
 	margin-bottom: 15px;
 	text-align: center;
 	color: white;
@@ -38,15 +41,20 @@ h2 {
 	font-weight: bold;
 }
 
+h1, h2, h4 {
+	text-shadow: 2px 2px black;
+}
+
 p {
-	position: relative;
-	top: 150px;
+	text-shadow: 1px 1px black;
 }
 
 input {
 	padding: 10px;
-	width: 450px;
+	width: 420px;
+	outline: none;
 }
+
 
 button {
 	background-color: #4CAF50;
@@ -55,6 +63,10 @@ button {
 	border-radius: 5px;
 	padding: 8px;
 	margin: 15px;
+}
+
+.etsy-search {
+	margin-bottom: 0;
 }
 
 .subheader {
@@ -81,16 +93,12 @@ button {
 
 .map-search {
 	height: 400px;
-	width: 600px;
+	width: 800px;
 }
 
 #map-display {
 	height: 100%;
-	max-width: 600px;
-}
-
-.hidden {
-	display: none;
+	max-width: 800px;
 }
 
 @keyframes bounce {
@@ -127,4 +135,46 @@ button {
   cursor: pointer;
   animation-name: bounce;
   -moz-animation-name: bounce;
+}
+
+.main-input::-webkit-input-placeholder, .main-input::-moz-placeholder, .main-input:-ms-input-placeholder, .main-input:-moz-placeholder {
+  content: "test";
+}
+
+@media only screen and (max-width: 500px) {
+    input {
+        width: 300px;
+        font-size: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hidden {
+	display: none;
 }

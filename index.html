@@ -20,23 +20,26 @@
 		</header>
 
 		<!-- Stationery Search Page -->
-		<section class="etsy-search" role="stationer-search">
+		<section class="etsy-search" role="stationery-search">
 			<div class="row">
 				<div class="col-12">
 					<form class="search-form">
 						<label class="stationery-search"></label>
 						<input type="text" class="main-input" placeholder="Search by category (e.g., friendship, love, etc.)"><br>
 						<button type="submit" class="search-paper btn">Search Paper Products</button>
-					</form>
-
-					<!-- Sentence explaining app -->
-					<p>Find premium stationery and greeting cards for all occasions.</p>
+					</form>	
 				</div>
 			</div>
 		</section>
+
+	<section class="loading hidden" role="page-loading">
+		<p class="loading-text">Loading...</p>
+	</section>
+		<!-- Sentence describing app -->
+		<p>Find premium stationery and greeting cards for all occasions.</p>
 	</main>
 
-	<!-- Back button to return to main paig-->
+	<!-- Back button to return to main page-->
 	<section role="back-button">
 		<div class="row">
 			<div class="col-12">
@@ -48,26 +51,23 @@
 	</section>
 
 	<!-- Stationery results based on search term -->
-	<section class="js-stationery-results" role="stationery-results"></section>
+	<section class="js-stationery-results hidden" role="stationery-results"></section>
 
 	<!-- Message when page loads results -->
-	<section class="loading hidden" role="page-loading">
-		<div class="row">
-			<div class="col-12">
-				<p class="loading-text">Loading...</p>
-			</div>
-		</div>
-	</section>
+
 
 	<!-- Google Maps search for stores near user -->
 	<section class="map-search  hidden" role="search-stores">
-		<h2 class="map-header hidden">Can't find what you're looking for? <br> Check out a paper products shop near you:</h2>
+				<h2 class="map-header hidden">Can't find what you're looking for? <br> Check out a paper products shop near you:</h2>
 		<!-- <form class="map-search-form"> -->
 			<!-- <label for="search-box"></label> -->
 		<input type="text" id="map-input" class="controls" name="search-box" placeholder="Search for stationery store"><br>
 			<!-- <button type="submit" class="google-maps btn">Search Nearby Stores</button> -->
 		<!-- </form> -->
 		<div id="map-display"></div>
+
+
+
 	</section>
 	
 	<script

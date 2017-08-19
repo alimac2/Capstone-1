@@ -14,7 +14,7 @@ function initAutocomplete() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
+      const pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -31,17 +31,17 @@ function initAutocomplete() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
 
-  var input = document.getElementById("map-input");
-  var searchBox = new google.maps.places.SearchBox(input);
+  const input = document.getElementById("map-input");
+  const searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
+  const markers = [];
   searchBox.addListener("places_changed", function() {
-    var places = searchBox.getPlaces();
+    const places = searchBox.getPlaces();
     if (places.length == 0) {
       return;
     }
@@ -52,13 +52,13 @@ function initAutocomplete() {
   });
   markers = [];
 
-  var bounds = new google.maps.LatLngBounds();
+  const bounds = new google.maps.LatLngBounds();
   places.forEach(function(place) {
     if (!place.geometry) {
       console.log("Returned place contains no geometry");
       return;
     }
-    var icon = {
+    const icon = {
       url: place.icon,
       size: new google.maps.Size(71, 71),
       origin: new google.maps.Point(0, 0),
