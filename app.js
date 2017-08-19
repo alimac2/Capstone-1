@@ -14,7 +14,7 @@ function initAutocomplete() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      const pos = {
+      var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -31,17 +31,17 @@ function initAutocomplete() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
 
-  const input = document.getElementById("map-input");
-  const searchBox = new google.maps.places.SearchBox(input);
+  var input = document.getElementById("map-input");
+  var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
 
-  const markers = [];
+  var markers = [];
   searchBox.addListener("places_changed", function() {
-    const places = searchBox.getPlaces();
+    var places = searchBox.getPlaces();
     if (places.length == 0) {
       return;
     }
@@ -52,13 +52,13 @@ function initAutocomplete() {
   });
   markers = [];
 
-  const bounds = new google.maps.LatLngBounds();
+  var bounds = new google.maps.LatLngBounds();
   places.forEach(function(place) {
     if (!place.geometry) {
       console.log("Returned place contains no geometry");
       return;
     }
-    const icon = {
+    var icon = {
       url: place.icon,
       size: new google.maps.Size(71, 71),
       origin: new google.maps.Point(0, 0),
@@ -142,6 +142,7 @@ $(".back-btn-div").on("click", function(event){
   $(".js-stationery-results").addClass("hidden");
   $(".back-btn-div").addClass("hidden");
   $("main").removeClass("hidden");
+  $(".app-description").removeClass("hidden")
   $(".map-header").addClass("hidden")
   $(".map-search").addClass("hidden");
 });
@@ -151,6 +152,7 @@ function showEtsyApiData(data) {
   const etsyResults = data.results.map(renderEtsyResult);
   $(".js-stationery-results").html(etsyResults);
   $("main").addClass("hidden");
+  $(".app-description").addClass("hidden");
   $(".back-btn-div").removeClass("hidden");
   $(".js-stationery-results").removeClass("hidden");
   $(".map-header").removeClass("hidden")
@@ -161,7 +163,6 @@ function showEtsyApiData(data) {
 }
 
 $(onStationerySubmit);
-
 
 
 // function initMap(button) {

@@ -7,7 +7,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 body {
@@ -30,7 +30,7 @@ h1 {
 	padding: 0;
 }
 
-header, section, p, h2 {
+header, section, p, h2, footer {
 	margin: 0 auto;
 	margin-bottom: 15px;
 	text-align: center;
@@ -41,11 +41,11 @@ h2 {
 	font-weight: bold;
 }
 
-h1, h2, h4 {
+h1, h2, h3 {
 	text-shadow: 2px 2px black;
 }
 
-p {
+p, footer {
 	text-shadow: 1px 1px black;
 }
 
@@ -63,6 +63,16 @@ button {
 	border-radius: 5px;
 	padding: 8px;
 	margin: 15px;
+}
+
+footer {
+	font-weight: bold;
+	font-size: 13px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
 }
 
 .etsy-search {
@@ -99,6 +109,7 @@ button {
 #map-display {
 	height: 100%;
 	max-width: 800px;
+	margin-bottom: 20px;
 }
 
 @keyframes bounce {
@@ -147,6 +158,14 @@ button {
         font-size: 10px;
     }
 }
+
+@media only screen and (max-width: 320px) {
+    input {
+        width: 250px;
+        font-size: 10px;
+    }
+}
+
 
 
 
