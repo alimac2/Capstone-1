@@ -1,17 +1,16 @@
 /*GOOGLE MAPS FUNCTIONALITY*/
 var map;
-var myLatLngn = {lat: 37.09024, lng: -95.712891};
 var infoWindow;
+// var MAP_API_KEY = "AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU"
 
 function initAutocomplete() {
   map = new google.maps.Map(document.getElementById("map-display"), {
-    center: myLatLngn,
-    zoom: 7,
+    center: {lat: 37.09024, lng: -95.712891},
+    zoom: 12,
     mapTypeId: "roadmap"
     });
 
-  infoWindow = new google.maps.InfoWindow;
-
+  var infoWindow = new google.maps.InfoWindow;
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
@@ -27,17 +26,22 @@ function initAutocomplete() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
   } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+    /* Browser doesn't support Geolocation */
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
 
+
+  /* Create search box */
   var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
+  google.maps.event.trigger(map, 'resize');
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   map.addListener("bounds_changed", function() {
     searchBox.setBounds(map.getBounds());
   });
+
+  // google.maps.event.addDomListener(window, 'load', initialize); 
 
   var markers = [];
   searchBox.addListener("places_changed", function() {
@@ -82,6 +86,7 @@ function initAutocomplete() {
   });
     map.fitBounds(bounds);
   });
+
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -92,6 +97,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
  infoWindow.open(map);
 }
 
+// function loadJS() {
+//     console.log('loadJS executed'); 
+//     // DOM: Create the script element
+//     let jsElm = document.createElement("script");
+//     // make the script element load file
+//     jsElm.src = `https://maps.googleapis.com/maps/api/js?key=${MAP_API_KEY}&libraries=places&callback=initAutocomplete`;
+//     // finally insert the element to the body element in order to load the script
+//     document.body.appendChild(jsElm);
+// }
+// loadJS();
 
 
 
