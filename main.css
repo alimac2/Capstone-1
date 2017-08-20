@@ -112,6 +112,14 @@ footer {
 	margin-bottom: 20px;
 }
 
+/*.mapsearch, #map-display {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+}
+*/
+
 @keyframes bounce {
 	0%, 100%, 20%, 50%, 80% {
 		-webkit-transform: translateY(0);

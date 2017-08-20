@@ -34,7 +34,7 @@ function initAutocomplete() {
   /* Create search box */
   var input = document.getElementById("map-input");
   var searchBox = new google.maps.places.SearchBox(input);
-  google.maps.event.trigger(map, 'resize');
+ 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   map.addListener("bounds_changed", function() {
@@ -172,6 +172,7 @@ function showEtsyApiData(data) {
   $(".js-stationery-results").removeClass("hidden");
   $(".map-header").removeClass("hidden")
   $(".map-search").removeClass("hidden");
+  google.maps.event.trigger(map, 'resize');
   $(".loading").addClass('hidden');
   // console.log(etsyResults);
   return etsyResults;
