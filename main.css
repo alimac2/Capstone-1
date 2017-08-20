@@ -39,6 +39,7 @@ header, section, p, h2, footer {
 
 h2 {
 	font-weight: bold;
+	padding: 5px;
 }
 
 h1, h2, h3 {
@@ -103,22 +104,19 @@ footer {
 
 .map-search {
 	height: 400px;
-	width: 800px;
+	width: 100%;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 #map-display {
+	color: black;
 	height: 100%;
 	max-width: 800px;
 	margin-bottom: 20px;
+	margin-left: auto;
+    margin-right: auto;
 }
-
-/*.mapsearch, #map-display {
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-}
-*/
 
 @keyframes bounce {
 	0%, 100%, 20%, 50%, 80% {
@@ -173,6 +171,11 @@ footer {
         width: 300px;
         font-size: 10px;
     }
+    #map-display {
+    	width: 350px;
+    	margin-left: auto;
+    	margin-right: auto;
+	}
 }
 
 @media only screen and (max-width: 320px) {
