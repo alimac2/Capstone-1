@@ -1,34 +1,46 @@
 /*GOOGLE MAPS FUNCTIONALITY*/
 var map;
 var infoWindow;
-// var MAP_API_KEY = "AIzaSyAZCRrXZqy0vdPMrfNPZy8DBM4ywFFflwU"
+var allow = false;
+var pos = {
+        lat: 37.09024,
+        lng: -95.712891
+      };
 
-function initAutocomplete() {
-  map = new google.maps.Map(document.getElementById("map-display"), {
-    center: {lat: 37.09024, lng: -95.712891},
-    zoom: 12,
-    mapTypeId: "roadmap"
-    });
-
-  var infoWindow = new google.maps.InfoWindow;
-  if (navigator.geolocation) {
+if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
+      pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      allow = true;
 
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('You are here');
-      infoWindow.open(map);
-      map.setCenter(pos);
-    }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
+      console.log(position);
+    });
+
+}
+
+function initAutocomplete() {
+  var zoomValue; 
+
+  infoWindow = new google.maps.InfoWindow;
+  infoWindow.setPosition(pos);
+
+  if (allow === true) {
+    infoWindow.setContent('You are here');
+    zoomValue = 12;
   } else {
-    /* Browser doesn't support Geolocation */
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+    infoWindow.setContent('United States');
+    zoomValue = 4;
+  }
+
+  map = new google.maps.Map(document.getElementById("map-display"), {
+    center: pos,
+    zoom: zoomValue,
+    mapTypeId: "roadmap"
+  }); 
+ 
+    infoWindow.open(map);
 
 
   /* Create search box */
@@ -43,49 +55,49 @@ function initAutocomplete() {
 
   // google.maps.event.addDomListener(window, 'load', initialize); 
 
-  var markers = [];
-  searchBox.addListener("places_changed", function() {
-    var places = searchBox.getPlaces();
-    if (places.length == 0) {
-      return;
-    }
+  // var markers = [];
+  // searchBox.addListener("places_changed", function() {
+  //   var places = searchBox.getPlaces();
+  //   if (places.length == 0) {
+  //     return;
+  //   }
 
   /* Clears out old markers */  
-  markers.forEach(function(marker) {
-  marker.setMap(null);
-  });
-  markers = [];
+  // markers.forEach(function(marker) {
+  // marker.setMap(null);
+  // });
+  // markers = [];
 
-  var bounds = new google.maps.LatLngBounds();
-  places.forEach(function(place) {
-    if (!place.geometry) {
-      console.log("Returned place contains no geometry");
-      return;
-    }
-    var icon = {
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25)
-    };
+  // var bounds = new google.maps.LatLngBounds();
+  // places.forEach(function(place) {
+  //   if (!place.geometry) {
+  //     console.log("Returned place contains no geometry");
+  //     return;
+  //   }
+  //   var icon = {
+  //     url: place.icon,
+  //     size: new google.maps.Size(71, 71),
+  //     origin: new google.maps.Point(0, 0),
+  //     anchor: new google.maps.Point(17, 34),
+  //     scaledSize: new google.maps.Size(25, 25)
+  //   };
 
    //Creates a marker for each place. 
-    markers.push(new google.maps.Marker({
-      map: map,
-      icon: icon,
-      title: place.name,
-      position: place.geometry.location
-    }));
+  //   markers.push(new google.maps.Marker({
+  //     map: map,
+  //     icon: icon,
+  //     title: place.name,
+  //     position: place.geometry.location
+  //   }));
 
-    if (place.geometry.viewport) {
-     bounds.union(place.geometry.viewport);
-    } else {
-      bounds.extend(place.geometry.location);
-    }
-  });
-    map.fitBounds(bounds);
-  });
+  //   if (place.geometry.viewport) {
+  //    bounds.union(place.geometry.viewport);
+  //   } else {
+  //     bounds.extend(place.geometry.location);
+  //   }
+  // });
+  //   map.fitBounds(bounds);
+  // });
 
 }
 
@@ -97,16 +109,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
  infoWindow.open(map);
 }
 
-// function loadJS() {
-//     console.log('loadJS executed'); 
-//     // DOM: Create the script element
-//     let jsElm = document.createElement("script");
-//     // make the script element load file
-//     jsElm.src = `https://maps.googleapis.com/maps/api/js?key=${MAP_API_KEY}&libraries=places&callback=initAutocomplete`;
-//     // finally insert the element to the body element in order to load the script
-//     document.body.appendChild(jsElm);
-// }
-// loadJS();
+
+
+
 
 
 
@@ -172,26 +177,11 @@ function showEtsyApiData(data) {
   $(".js-stationery-results").removeClass("hidden");
   $(".map-header").removeClass("hidden")
   $(".map-search").removeClass("hidden");
+    $(".loading").addClass('hidden');
+  initAutocomplete();
   google.maps.event.trigger(map, 'resize');
-  $(".loading").addClass('hidden');
   // console.log(etsyResults);
   return etsyResults;
 }
 
 $(onStationerySubmit);
-
-
-// function initMap(button) {
-//     var info = button.parent();
-//     var latitude = info.find($('.lat')).val();
-//     var longitude = info.find($('.lng')).val();
-//     var location = {lat: Number(latitude), lng: Number(longitude)};
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//       zoom: 16,
-//       center: location
-//     });
-//     var marker = new google.maps.Marker({
-//       position: location,
-//       map: map
-//     });
-// }
