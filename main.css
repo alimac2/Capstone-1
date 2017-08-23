@@ -20,13 +20,19 @@ body {
 main {
 	position: relative;
 	top: 135px;
-	padding: 0 10px;
+	padding: 0;
+	width: 55%;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 25px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 h1 {
 	font-size: 72px;
 	font-family: 'PT Mono', monospace;
 	margin-bottom: 0;
+	margin-top: 5px;
 	padding: 0;
 }
 
@@ -40,17 +46,30 @@ header, section, p, h2, footer {
 h2 {
 	font-weight: bold;
 	padding: 5px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 25px;
+	width: 50%;
 }
 
 h1, h2, h3 {
 	text-shadow: 2px 2px black;
 }
 
-p, footer {
+p, label {
 	text-shadow: 1px 1px black;
 }
 
+form {
+	margin-bottom: 5px;
+}
+
+label {
+	font-size: 18px;
+	padding: 5px;
+}
+
 input {
+	margin-top: 10px;
 	padding: 10px;
 	width: 420px;
 	outline: none;
@@ -62,18 +81,9 @@ button {
 	color: white;
 	cursor: url('http://www.funpaperairplanes.com/img/fpa-logo.png'), pointer;
 	border-radius: 5px;
-	padding: 8px;
+	padding: 12px;
 	margin: 15px;
-}
-
-footer {
-	font-weight: bold;
-	font-size: 13px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding: 10px;
+	font-size: 16px;
 }
 
 .etsy-search {

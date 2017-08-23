@@ -14,7 +14,6 @@ if (navigator.geolocation) {
         lng: position.coords.longitude
       };
       allow = true;
-
       console.log(position);
     });
 
@@ -40,7 +39,7 @@ function initAutocomplete() {
     mapTypeId: "roadmap"
   }); 
  
-    infoWindow.open(map);
+  infoWindow.open(map);
 
 
   /* Create search box */
@@ -55,51 +54,54 @@ function initAutocomplete() {
 
   // google.maps.event.addDomListener(window, 'load', initialize); 
 
-  // var markers = [];
-  // searchBox.addListener("places_changed", function() {
-  //   var places = searchBox.getPlaces();
-  //   if (places.length == 0) {
-  //     return;
-  //   }
+  var markers = [];
+  searchBox.addListener("places_changed", function() {
+    var places = searchBox.getPlaces();
+    if (places.length == 0) {
+      return;
+    }
 
   /* Clears out old markers */  
-  // markers.forEach(function(marker) {
-  // marker.setMap(null);
-  // });
-  // markers = [];
+  markers.forEach(function(marker) {
+  marker.setMap(null);
+  });
+  markers = [];
 
-  // var bounds = new google.maps.LatLngBounds();
-  // places.forEach(function(place) {
-  //   if (!place.geometry) {
-  //     console.log("Returned place contains no geometry");
-  //     return;
-  //   }
-  //   var icon = {
-  //     url: place.icon,
-  //     size: new google.maps.Size(71, 71),
-  //     origin: new google.maps.Point(0, 0),
-  //     anchor: new google.maps.Point(17, 34),
-  //     scaledSize: new google.maps.Size(25, 25)
-  //   };
+  var bounds = new google.maps.LatLngBounds();
+  places.forEach(function(place) {
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+    var icon = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
 
    //Creates a marker for each place. 
-  //   markers.push(new google.maps.Marker({
-  //     map: map,
-  //     icon: icon,
-  //     title: place.name,
-  //     position: place.geometry.location
-  //   }));
+    markers.push(new google.maps.Marker({
+      map: map,
+      icon: icon,
+      title: place.name,
+      position: place.geometry.location
+    }));
 
-  //   if (place.geometry.viewport) {
-  //    bounds.union(place.geometry.viewport);
-  //   } else {
-  //     bounds.extend(place.geometry.location);
-  //   }
-  // });
-  //   map.fitBounds(bounds);
-  // });
+    if (place.geometry.viewport) {
+     bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+  });
+    map.fitBounds(bounds);
+    // map.setZoom(12);
+    /* trying to zoom into map results after block */
+  });
 
 }
+
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -108,10 +110,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     'Error: Your browser doesn\'t support geolocation.');
  infoWindow.open(map);
 }
-
-
-
-
 
 
 
@@ -166,6 +164,8 @@ $(".back-btn-div").on("click", function(event){
   $(".map-header").addClass("hidden")
   $(".map-search").addClass("hidden");
 });
+
+// $('.back-btn-div').click(function(){ location.reload(); });  //REFRESH HACK
 
 function showEtsyApiData(data) {
   // console.log(data);
