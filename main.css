@@ -19,9 +19,9 @@ body {
 
 main {
 	position: relative;
-	top: 135px;
+	top: 80px;
 	padding: 0;
-	width: 55%;
+	width: 80%;
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 25px;
 	margin-left: auto;
@@ -69,7 +69,10 @@ label {
 }
 
 input {
+	display: block;
 	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
 	padding: 10px;
 	width: 420px;
 	outline: none;
@@ -106,6 +109,10 @@ button {
 	max-width: 1300px;
 	padding: 30px;
 	margin: 0 auto;
+	margin-bottom: 15px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 25px;
+	width: 70%;
 }
 
 .loading-text {
@@ -168,7 +175,7 @@ button {
   content: "test";
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 860px) {
     #map-display {
     	width: 450px;
     	margin-left: auto;
@@ -178,7 +185,7 @@ button {
 
 @media only screen and (max-width: 500px) {
     input {
-        width: 300px;
+        width: 280px;
         font-size: 10px;
     }
     #map-display {
@@ -186,12 +193,22 @@ button {
     	margin-left: auto;
     	margin-right: auto;
 	}
+	main {
+		width: 320px;
+	}
+	h2 {
+		width: 350px;
+	}
+
 }
 
 @media only screen and (max-width: 320px) {
     input {
-        width: 250px;
+        width: 220px;
         font-size: 10px;
+    }
+    main {
+    	width: 270px;
     }
 }
 
