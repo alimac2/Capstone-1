@@ -1,157 +1,164 @@
 * {
-	box-sizing: border-box;
-	font-family: 'PT Mono', monospace;
+    box-sizing: border-box;
+    font-family: 'PT Mono', monospace;
+}
+
+html {
+    position: relative;
 }
 
 html, body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
 }
 
 body {
-	background-image: url(paul-jarvis-217.jpg);
-	background-size: cover;
-	background-attachment: fixed;
-	background-position: center;
+    background-image: url(paul-jarvis-217.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100%;
 }
 
 main {
-	position: relative;
-	top: 80px;
-	padding: 0;
-	margin-left: auto;
-	margin-right: auto;
+    position: relative;
+    top: 80px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
-	font-size: 72px;
-	font-family: 'PT Mono', monospace;
-	margin-bottom: 0;
-	margin-top: 5px;
-	padding: 0;
+    font-size: 72px;
+    font-family: 'PT Mono', monospace;
+    margin-bottom: 0;
+    margin-top: 5px;
+    padding: 0;
 }
 
 header, section, p, h2, footer {
-	margin: 0 auto;
-	margin-bottom: 15px;
-	text-align: center;
-	color: white;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+    color: white;
 }
 
 h2 {
-	font-weight: bold;
-	padding: 5px;
+    font-weight: bold;
+    padding: 5px;
 }
 
 h1, h2, h3 {
-	text-shadow: 2px 2px black;
+    text-shadow: 2px 2px black;
 }
 
 p, label {
-	text-shadow: 1px 1px black;
+    text-shadow: 1px 1px black;
 }
 
 form {
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 label {
-	font-size: 18px;
-	padding: 5px;
+    font-size: 18px;
+    padding: 5px;
 }
 
 input {
-	display: block;
-	margin-top: 10px;
-	margin-right: auto;
-	margin-left: auto;
-	padding: 10px;
-	width: 420px;
-	outline: none;
+    display: block;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    width: 420px;
+    outline: none;
 }
 
 
 button {
-	background-color: #4CAF50;
-	color: white;
-	cursor: url('http://www.funpaperairplanes.com/img/fpa-logo.png'), pointer;
-	border-radius: 5px;
-	padding: 12px;
-	margin: 15px;
-	font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: url('http://www.funpaperairplanes.com/img/fpa-logo.png'), pointer;
+    border-radius: 5px;
+    padding: 12px;
+    margin: 15px;
+    font-size: 16px;
 }
 
 .darken {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
 }
 
 .etsy-search {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .subheader {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .back-btn-div {
-	text-align: center;
+    text-align: center;
 }
 
 .js-displayed-results-box {
-	display: inline-block;
+    display: inline-block;
 }
 
 .js-stationery-results {
-	max-width: 1300px;
-	padding: 30px;
-	margin: 0 auto;
+    max-width: 1300px;
+    padding: 30px;
+    margin: 0 auto;
 }
 
 .loading-text {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 .map-search {
-	height: 400px;
-	width: 100%;
-	margin-left: auto;
+    height: 600px;
+    width: 100%;
+    margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
 }
 
 #map-display {
-	color: black;
-	height: 100%;
-	max-width: 800px;
-	margin-bottom: 20px;
-	margin-left: auto;
+    color: black;
+    max-width: 800px;
+    margin-bottom: 20px;
+    margin-left: auto;
     margin-right: auto;
+    height: 450px;
 }
 
 @keyframes bounce {
-	0%, 100%, 20%, 50%, 80% {
-		-webkit-transform: translateY(0);
-		-ms-transform:     translateY(0);
-		transform:         translateY(0)
-	}
-	40% {
-		-webkit-transform: translateY(-30px);
-		-ms-transform:     translateY(-30px);
-		transform:         translateY(-30px)
-	}
-	60% {
-		-webkit-transform: translateY(-15px);
-		-ms-transform:     translateY(-15px);
-		transform:         translateY(-15px)
-	}
+    0%, 100%, 20%, 50%, 80% {
+        -webkit-transform: translateY(0);
+        -ms-transform:     translateY(0);
+        transform:         translateY(0)
+    }
+    40% {
+        -webkit-transform: translateY(-30px);
+        -ms-transform:     translateY(-30px);
+        transform:         translateY(-30px)
+    }
+    60% {
+        -webkit-transform: translateY(-15px);
+        -ms-transform:     translateY(-15px);
+        transform:         translateY(-15px)
+    }
 }
-.results-image {  
+.results-image {
   text-transform: uppercase;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -176,10 +183,10 @@ button {
 
 @media only screen and (max-width: 860px) {
     #map-display {
-    	width: 450px;
-    	margin-left: auto;
-    	margin-right: auto;
-	}
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 @media only screen and (max-width: 500px) {
@@ -188,16 +195,16 @@ button {
         font-size: 10px;
     }
     #map-display {
-    	width: 350px;
-    	margin-left: auto;
-    	margin-right: auto;
-	}
-	main {
-		width: 320px;
-	}
-	h2 {
-		width: 350px;
-	}
+        width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    main {
+        width: 320px;
+    }
+    h2 {
+        width: 350px;
+    }
 
 }
 
@@ -207,7 +214,7 @@ button {
         font-size: 10px;
     }
     main {
-    	width: 270px;
+        width: 270px;
     }
 }
 
@@ -240,5 +247,5 @@ button {
 
 
 .hidden {
-	display: none;
+    display: none;
 }
