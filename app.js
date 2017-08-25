@@ -22,7 +22,7 @@ if (navigator.geolocation) {
 function initAutocomplete() {
   var zoomValue; 
 
-  infoWindow = new google.maps.InfoWindow;
+  infoWindow = new google.maps.InfoWindow();
   infoWindow.setPosition(pos);
 
   if (allow === true) {
@@ -40,7 +40,6 @@ function initAutocomplete() {
   }); 
  
   infoWindow.open(map);
-
 
   /* Create search box */
   var input = document.getElementById("map-input");
@@ -156,16 +155,16 @@ function renderEtsyResult(result) {
   `;
 }
 
-$(".back-btn-div").on("click", function(event){
-  $(".js-stationery-results").addClass("hidden");
-  $(".back-btn-div").addClass("hidden");
-  $("main").removeClass("hidden");
-  $(".app-description").removeClass("hidden")
-  $(".map-header").addClass("hidden")
-  $(".map-search").addClass("hidden");
-});
+// $(".back-btn-div").on("click", function(event){
+//   $(".js-stationery-results").addClass("hidden");
+//   $(".back-btn-div").addClass("hidden");
+//   $("main").removeClass("hidden");
+//   $(".app-description").removeClass("hidden")
+//   $(".map-header").addClass("hidden")
+//   $(".map-search").addClass("hidden");
+// });
 
-// $('.back-btn-div').click(function(){ location.reload(); });  //REFRESH HACK
+$('.back-btn-div').click(function(){ location.reload(); });
 
 function showEtsyApiData(data) {
   // console.log(data);
