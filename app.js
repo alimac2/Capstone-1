@@ -51,8 +51,6 @@ function initAutocomplete() {
     searchBox.setBounds(map.getBounds());
   });
 
-  // google.maps.event.addDomListener(window, 'load', initialize); 
-
   var markers = [];
   searchBox.addListener("places_changed", function() {
     var places = searchBox.getPlaces();
@@ -80,7 +78,7 @@ function initAutocomplete() {
       scaledSize: new google.maps.Size(25, 25)
     };
 
-   //Creates a marker for each place. 
+   /* Creates a marker for each place. */
     markers.push(new google.maps.Marker({
       map: map,
       icon: icon,
@@ -95,12 +93,9 @@ function initAutocomplete() {
     }
   });
     map.fitBounds(bounds);
-    // map.setZoom(12);
-    /* trying to zoom into map results after block */
   });
 
 }
-
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
@@ -147,7 +142,6 @@ function onStationerySubmit() {
 }
 
 function renderEtsyResult(result) {
-  // console.log(result);
   return `
     <div class="js-displayed-results-box">
      <a class="js-displayed-results" href="${result.url}" target="_blank"><img class="results-image" src="${result.Images[0].url_170x135}"></a>
@@ -155,19 +149,9 @@ function renderEtsyResult(result) {
   `;
 }
 
-// $(".back-btn-div").on("click", function(event){
-//   $(".js-stationery-results").addClass("hidden");
-//   $(".back-btn-div").addClass("hidden");
-//   $("main").removeClass("hidden");
-//   $(".app-description").removeClass("hidden")
-//   $(".map-header").addClass("hidden")
-//   $(".map-search").addClass("hidden");
-// });
-
 $('.back-btn-div').click(function(){ location.reload(); });
 
 function showEtsyApiData(data) {
-  // console.log(data);
   const etsyResults = data.results.map(renderEtsyResult);
   $(".js-stationery-results").html(etsyResults);
   $("main").addClass("hidden");
@@ -179,7 +163,6 @@ function showEtsyApiData(data) {
     $(".loading").addClass('hidden');
   initAutocomplete();
   google.maps.event.trigger(map, 'resize');
-  // console.log(etsyResults);
   return etsyResults;
 }
 
