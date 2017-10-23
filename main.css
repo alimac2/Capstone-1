@@ -58,6 +58,10 @@ p {
     text-shadow: 1px 1px black;
 }
 
+span {
+	text-decoration: underline;
+}
+
 form {
     margin-bottom: 5px;
 }
